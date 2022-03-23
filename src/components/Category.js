@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Categories from './Categories'
 import CustomInput from './CustomInput'
 import CustomSelect from './CustomSelect'
+import SubCategory from './SubCategory'
 
 const Category = () => {
 
@@ -123,19 +125,21 @@ const Category = () => {
         categories: '',
     }
 
-    const [selectId, setSelectId] = useState()
-    const [subSelectId, setsubSelectId] = useState()
+    // const [selectId, setSelectId] = useState()
+    // const [subSelectId, setsubSelectId] = useState()
 
     const onSubmit = (values) => {
         console.log(values, values.category)
 
-        setSelectId(values.category)
-        setsubSelectId(values.subCategory)
+        // setSelectId(values.category)
+        // setsubSelectId(values.subCategory)
     }
 
 
 
-    const { handleSubmit, control } = useForm({ defaultValues })
+
+
+    const { handleSubmit, control, watch, setValue } = useForm({ defaultValues })
 
 
     return (
@@ -148,29 +152,14 @@ const Category = () => {
                 </div>
                 <div className="categoryOne">
                     <h5>Category</h5>
-                    <CustomSelect control={control} name='category' options={
+                    <CustomSelect placehoder='Please choose' control={control} name='category' options={
                         options.filter((item, index) => {
                             return item.parentId == 0
                         })
                     } />
                 </div>
-                <div className="categoryOne">
-                    <h5>Sub Category</h5>
-                    <CustomSelect control={control} name='subCategory' options={
-                        options.filter((item, index) => {
-                            return item.parentId == selectId
-
-                        })
-                    } />
-                </div>
-                <div className="categoryOne">
-                    <h5>Categories</h5>
-                    <CustomSelect control={control} name='categories' options={
-                        options.filter((item, index) => {
-                            return item.parentId == subSelectId
-                        })
-                    } />
-                </div>
+                <SubCategory options={options} control={control} watch={watch} setValue={setValue} />
+                <Categories options={options} control={control} watch={watch} />
             </form>
 
         </>

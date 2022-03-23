@@ -15,11 +15,17 @@ const Attribute = () => {
 
     const { handleSubmit, control, reset } = useForm({ defaultValues })
 
+
+    // const [products, setProducts] = useState([])
+    // const [stat, setStat] = useState([])
     const [datas, setDatas] = useState([])
 
-    const onSubmit = (values) => {
+
+
+
+    const onSubmit = (values, e) => {
         console.log(values)
-        setDatas([...datas, values.product, values.status])
+        setDatas([...datas, { title: values.product, status: values.status }])
         console.log(datas)
         reset()
     }
@@ -32,12 +38,9 @@ const Attribute = () => {
         setDatas(updatedDatas)
     }
 
-    const handleEdit = () => {
+    const handleEdit = (id) => {
 
     }
-
-
-
     return (
         <>
             <form
@@ -58,16 +61,17 @@ const Attribute = () => {
                 <ul>
                     {datas.map((item, index) =>
                         <li key={index}>
-                            {item}
+                            {item.title}{item.status}
                             <i className="fa-solid fa-trash-can" onClick={() => handleDelete(index)}></i>
-                            <i class="fa-solid fa-pen-to-square" onClick={() => handleEdit(index)}></i>
+                            <i className="fa-solid fa-pen-to-square" onClick={() => handleEdit(index)}></i>
                         </li>
                     )}
                 </ul>
             </div>
-
         </>
     )
 }
+
+
 
 export default Attribute
