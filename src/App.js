@@ -8,7 +8,7 @@ function App() {
     <>
       <Tags />
       <Category />
-      <Attribute />
+      {/* <Attribute /> */}
     </>
   );
 }

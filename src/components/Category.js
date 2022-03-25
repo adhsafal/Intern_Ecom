@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useForm, Resolver } from 'react-hook-form'
 import Categories from './Categories'
 import CustomInput from './CustomInput'
 import CustomSelect from './CustomSelect'
 import SubCategory from './SubCategory'
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const Category = () => {
 
@@ -129,7 +131,7 @@ const Category = () => {
     // const [subSelectId, setsubSelectId] = useState()
 
     const onSubmit = (values) => {
-        console.log(values, values.category)
+        console.log(values)
 
         // setSelectId(values.category)
         // setsubSelectId(values.subCategory)
@@ -137,29 +139,47 @@ const Category = () => {
 
 
 
+    const schema = yup.object({
+        productName: yup.string().required('Please enter a product name'),
+        category: yup.string().required('Please select category'),
+        subCategory: yup.string().required('Please select sub catgeory'),
+        categories: yup.string().required('Please select categories')
+    }).required();
 
 
-    const { handleSubmit, control, watch, setValue } = useForm({ defaultValues })
+    const { handleSubmit, control, watch, setValue, formState: { errors } } = useForm({ resolver: yupResolver(schema) }, { defaultValues })
 
 
     return (
         <>
-            <form className='category'
-                onChange={handleSubmit(onSubmit)}>
-                <div className="categoryInput">
-                    <h5>Product</h5>
-                    <CustomInput control={control} name='productName' />
+            <form
+                onSubmit={handleSubmit(onSubmit)}>
+                <div className="category">
+                    <div className="categoryInput">
+                        <h5>Product</h5>
+                        <CustomInput control={control} name='productName' />
+                        <p>{errors.productName?.message}</p>
+                    </div>
+                    <div className="categoryOne">
+                        <h5>Category</h5>
+                        <CustomSelect placehoder='Choose category' control={control} name='category' options={
+                            options.filter((item, index) => {
+                                return item.parentId == 0
+                            })
+                        } />
+                        <p>{errors.category?.message}</p>
+                    </div>
+                    <div>
+                        <SubCategory options={options} control={control} watch={watch} setValue={setValue} />
+                        <p>{errors.subCategory?.message}</p>
+                    </div>
+                    <div>
+                        <Categories options={options} control={control} watch={watch} />
+                        <p>{errors.categories?.message}</p>
+                    </div>
                 </div>
-                <div className="categoryOne">
-                    <h5>Category</h5>
-                    <CustomSelect placehoder='Please choose' control={control} name='category' options={
-                        options.filter((item, index) => {
-                            return item.parentId == 0
-                        })
-                    } />
-                </div>
-                <SubCategory options={options} control={control} watch={watch} setValue={setValue} />
-                <Categories options={options} control={control} watch={watch} />
+
+                <button type='submit'> Save me</button>
             </form>
 
         </>

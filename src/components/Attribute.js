@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import CustomInput from './CustomInput'
-
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 
 
 const Attribute = () => {
@@ -13,7 +14,6 @@ const Attribute = () => {
         status: ''
     }
 
-    const { handleSubmit, control, reset } = useForm({ defaultValues })
 
 
     // const [products, setProducts] = useState([])
@@ -41,6 +41,17 @@ const Attribute = () => {
     const handleEdit = (id) => {
 
     }
+
+    const schema = yup.object({
+        product: yup.string().required('Product name required'),
+        status: yup.string().required('Status required'),
+
+    }).required();
+
+    const { handleSubmit, control, reset, formState: { errors } } = useForm({ resolver: yupResolver(schema) }, { defaultValues })
+
+
+
     return (
         <>
             <form
@@ -49,10 +60,13 @@ const Attribute = () => {
                 <div className="product">
                     <h1>Product</h1>
                     <CustomInput control={control} name='product' />
+                    <p>{errors.product?.message}</p>
                 </div>
                 <div className="product">
                     <h1>Status</h1>
                     <CustomInput control={control} name='status' />
+                    <p>{errors.status?.message}</p>
+
                 </div>
                 <button type='submit'> Save </button>
             </form>

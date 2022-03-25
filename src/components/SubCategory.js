@@ -20,7 +20,7 @@ const SubCategory = ({ options, control, watch, setValue }) => {
         <>
             <div className="categoryOne">
                 <h5>Sub Category</h5>
-                <CustomSelect control={control} name='subCategory' options={opt} />
+                <CustomSelect placehoder='Choose Sub_Category' control={control} name='subCategory' options={opt} />
             </div>
         </>
     )

@@ -10,7 +10,7 @@ const CustomSelect = ({ name, control, options, placehoder = "" }) => {
             render={({ field: { value, onChange } }) =>
                 <select onChange={onChange} value={value}>
 
-                    <option >{placehoder}</option>
+                    <option>{placehoder}</option>
                     {options.map((item, index) =>
                         <option key={index} value={item.id}>{item.title}</option>
                     )

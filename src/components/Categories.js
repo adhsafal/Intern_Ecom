@@ -19,7 +19,7 @@ const Categories = ({ options, control, watch }) => {
         <>
             <div className="categoryOne">
                 <h5>Categories</h5>
-                <CustomSelect control={control} name='categories' options={opt} />
+                <CustomSelect placehoder='Choose Categories' control={control} name='categories' options={opt} />
             </div>
         </>
     )

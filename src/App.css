@@ -3,21 +3,22 @@
 }
 
 body {
-	background-color: bisque;
+	background-color: #e6b9b9;
 }
 
 form.tags {
-	background-color: rgb(196, 176, 176);
+	background-color: rgb(227, 215, 235);
 	display: flex;
 	width: fit-content;
 	padding: 20px;
+	border-radius: 4px;
 }
 
 .tags input {
 	border: none;
 	outline: none;
 	font-size: 18px;
-	background-color: rgb(196, 176, 176);
+	background-color: rgb(227, 215, 235);
 	/* border-bottom: 1px solid black; */
 }
 ul {
@@ -43,32 +44,32 @@ ul li i {
 }
 
 ul li i:hover {
-	background-color: rgb(236, 113, 113);
+	background-color: rgb(227, 215, 235);
 	transition: all ease 0.5s;
 }
 
-form.category {
+form .category {
 	display: flex;
 }
 
-form.category input {
+form .category input {
 	border: none;
 	padding: 10px;
 	outline: none;
 	font-size: 18px;
 	border-radius: 4px;
-	background-color: rgb(119, 156, 144);
+	background-color: rgb(227, 215, 235);
 	margin-right: 40px;
 }
 
-form.category select {
+form .category select {
 	border: none;
 	padding: 10px;
 	margin-right: 40px;
 	outline: none;
 	font-size: 18px;
 	border-radius: 4px;
-	background-color: rgb(119, 156, 144);
+	background-color: rgb(227, 215, 235);
 }
 
 form.attribute {
@@ -82,7 +83,7 @@ form.attribute input {
 	outline: none;
 	font-size: 18px;
 	border-radius: 4px;
-	background-color: rgb(119, 156, 144);
+	background-color: rgb(227, 215, 235);
 	margin-right: 40px;
 }
 
@@ -93,7 +94,7 @@ form.attribute button {
 	outline: none;
 	font-size: 18px;
 	border-radius: 4px;
-	background-color: rgb(120, 177, 177);
+	background-color: rgb(227, 215, 235);
 }
 
 .attribute_lists ul {
@@ -103,4 +104,28 @@ form.attribute button {
 
 .attribute_lists ul li {
 	width: fit-content;
+}
+
+form .category {
+	display: flex;
+}
+
+form button {
+	height: fit-content;
+	border: none;
+	padding: 10px;
+	outline: none;
+	font-size: 18px;
+	border-radius: 4px;
+	background-color: rgb(227, 215, 235);
+	transition: all ease 0.7s;
+}
+
+form button:hover {
+	background-color: rgb(100, 219, 100);
+	transition: all ease 0.7s;
+}
+
+.category p {
+	color: red;
 }
